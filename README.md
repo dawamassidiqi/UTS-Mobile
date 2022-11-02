@@ -9,3 +9,12 @@ Challenge untuk UTS Kerjakan salah satu saja 100 :
 5. Tambahkan fitur edit task.
 6. Tambahkan fitur validasi input di edit task.
 7. Tambahkan fitur disable button edit task jika validasi input masih error.
+
+
+<img src="1.png">
+
+<img src="2.png">
+
+<img src="3.png">
+
+<img src="4.png">
