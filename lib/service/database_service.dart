@@ -82,6 +82,20 @@ class DatabaseService {
     return List.generate(maps.length, (index) => Task.fromMap(maps[index]));
   }
 
+  // Define a function that inserts breeds into the database
+  Future<void> deleteTask(String name) async {
+    // Get a reference to the database.
+    final db = await _databaseService.database;
+
+    // Insert the Breed into the correct table. You might also specify the
+    // `conflictAlgorithm` to use in case the same breed is inserted twice.
+    //
+    // In this case, replace any previous data.
+    await db.delete('task', where: 'name = ?', whereArgs: [name]
+        // conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+  }
+
   // Future<Breed> breed(int id) async {
   //   final db = await _databaseService.database;
   //   final List<Map<String, dynamic>> maps =
@@ -95,21 +109,19 @@ class DatabaseService {
   //   return List.generate(maps.length, (index) => Dog.fromMap(maps[index]));
   // }
 
-  // // A method that updates a breed data from the breeds table.
-  // Future<void> updateBreed(Breed breed) async {
-  //   // Get a reference to the database.
-  //   final db = await _databaseService.database;
+  // A method that updates a breed data from the breeds table.
+  Future<void> updateTask(Task task) async {
+    // Get a reference to the database.
+    final db = await _databaseService.database;
 
-  //   // Update the given breed
-  //   await db.update(
-  //     'breeds',
-  //     breed.toMap(),
-  //     // Ensure that the Breed has a matching id.
-  //     where: 'id = ?',
-  //     // Pass the Breed's id as a whereArg to prevent SQL injection.
-  //     whereArgs: [breed.id],
-  //   );
-  // }
+    // Update the given breed
+    await db.update('task', task.toMap(),
+        // Ensure that the Breed has a matching id.
+        where: 'id = ?',
+        // Pass the Breed's id as a whereArg to prevent SQL injection.
+        whereArgs: [task.id],
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
 
   // Future<void> updateDog(Dog dog) async {
   //   final db = await _databaseService.database;

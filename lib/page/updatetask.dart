@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_listview/models/task.dart';
 import 'package:provider_listview/service/tasklist.dart';
 
-class AddTaskPage extends StatelessWidget {
-  const AddTaskPage({super.key});
+class UpdateTaskPage extends StatelessWidget {
+  const UpdateTaskPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,6 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
-  bool buttonenabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +41,12 @@ class MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             validator: (value) {
               if (value!.length < 5) {
-                return 'Masukkan minimal 5 karakter';
+                return 'Masukan min 5 character';
               }
               return null;
             },
             decoration: const InputDecoration(
-              hintText: "Masukkan Task Baru",
+              hintText: "Update Task",
             ),
             onChanged: (value) {
               context.read<Tasklist>().changeTaskName(value);
@@ -61,19 +61,13 @@ class MyCustomFormState extends State<MyCustomForm> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        buttonenabled = false;
-                        context.read<Tasklist>().addTask();
-                        Navigator.pop(context, true);
-                        // formKey.currentState?.save();
-                        // taskController.clear();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Task sedang diproses...')),
-                        );
-                      });
+                      Navigator.pop(context, true);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
                     }
                   },
-                  child: const Text("Tambah Task Baru"),
+                  child: const Text("Update task"),
                 ),
               ),
             ],
