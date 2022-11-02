@@ -37,13 +37,14 @@ class _MyListPageState extends State<MyListPage> {
                   return Dismissible(
                     key: UniqueKey(),
                     onDismissed: (direction) {
-                      context.read<Tasklist>().deleteTask(task);
+                      setState(() {
+                        context.read<Tasklist>().deleteTask(task);
+                      });
                     },
                     background: Container(color: Colors.red),
                     child: ListTile(
-                      title:
-                          Text(context.watch<Tasklist>().taskList[index].name),
-                    ),
+                      title: Text(
+                              context.watch<Tasklist>().taskList[index].name)),
                   );
                 },
               ),
