@@ -11,10 +11,10 @@ Challenge untuk UTS Kerjakan salah satu saja 100 :
 7. Tambahkan fitur disable button edit task jika validasi input masih error.
 
 
-<img src="1.png">
+<img src="image\1.PNG">
 
-<img src="2.png">
+<img src="image\2.PNG">
 
-<img src="3.png">
+<img src="image\3.PNG">
 
-<img src="4.png">
+<img src="image\4.PNG">
